@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an account</title>
+</head>
+<style>
+    #nav_logo {
+        padding-left: 40%;
+        border:solid white;
+    }
+    #main {
+        margin-left: 40%;
+        display:flex;
+        flex-direction: column;
+    }
+    .mail {
+        border-radius: 10px;
+        border-width: .5px;
+        padding:15px;
+        width:400px;
+        margin-top: 20px;
+        display:flex;
+    }
+    #KMSI {
+        width:20px;
+        height:20px;
+        border:solid black;
+    }
+    #misc {
+        margin-top: 20px;
+        margin-left: 40%;
+        width:400px;
+        text-decoration:darkgray;
+    }
+    #continue {
+        height:50px;
+        width:400px;
+        border-radius: 10px;
+        background-color: teal;
+        border:none;
+        color: aliceblue;
+    }
+    @media only screen and (min-width: 375px) and (max-width: 768px) {
+            #main {
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+
+        @media only screen and (min-width: 0px) and (max-width: 375px) {
+            #main {
+                display: flex;
+                width: 100%;
+                flex-direction: column;
+            }
+        }
+</style>
+<body>
+    <div id = "nav_logo">
+        <img id="logo" src = "https://www.travelocity.com/_dms/interstitial/logo.svg?locale=en_US&siteid=80001" height="30px"
+        width="250px">
+    </div>
+    <hr>
+    <form id="login">
+        <div id="main">
+            <h1>Create an account</h1>
+            <input class="mail" id="mail" type="E-mail" placeholder="E-mail Address">
+            <input class="mail" id="Fname" type="name" placeholder="First Name">
+            <input class="mail" id="Lname" type="name" placeholder="Last Name">
+            <input class="mail" id="password" type="password" placeholder="Password">
+        </div>
+        <div id="misc">
+            <p><input id="KMSI" type="checkbox">Keep me signed in</p>
+            <p>Selecting this checkbox will keep you signed into your account on this device until you sign out. Do not select this on shared devices.
+            </p>
+            <p>By creating an account, I agree to the Travelocity Terms and Conditions and Privacy Statement.</p>
+            <input type="submit" id="continue" placeholder="Continue">
+            <p1>Already have an account? <span><a href="signIn.html">Signin</a></span></p1>
+        </div>
+    </form>
+    
+</body>
+<script>
+    document.querySelector("#login").addEventListener("submit", () => {
+        var arr = JSON.parse(localStorage.getItem("user")) || []
+
+
+        var Email = document.querySelector("#mail").value;
+        var Fname = document.querySelector("#Fname").value;
+        var Lname = document.querySelector("#Lname").value;
+        var password = document.querySelector("#password").value;
+
+        var obj = {
+            Email:Email,
+            Fname:Fname,
+            Lname:Lname,
+            password:password,
+        }
+
+        arr.push(obj)
+        localStorage.setItem("user", JSON.stringify(arr))
+        console.log("here")
+
+        window.location.href = "index.html";
+    });
+</script>
+</html>
